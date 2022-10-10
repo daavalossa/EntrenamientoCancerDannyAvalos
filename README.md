@@ -105,3 +105,109 @@ ENTRENAMIENTO DE MODELOS
 Analisis de resultados:
 	* usando un Marco de datos identificamos de mayor a menor el mejor modelo
 	* Reporte de clasificación
+
+#IDENTIFY IF A PATIENT HAS CANCER OR NOT
+
+Objective:
+The project aims to create a machine learning classifier that, using the given parameters of the dataset,
+predict whether the cell is malignant (cancerous) or benign (not cancerous).
+
+Description of the data set
+data set used: wdbc.data
+
+The data set contains 569 rows and 32 columns. Some of the columns are described below.
+*id — This identification number. it is assigned to each patient and is unique.
+*diagnosis: this would be our target variable, 'M' means malignant (cancerous) tumor and 'B' means benign (non-cancerous) tumor
+*radius — The distance from the center to the perimeter of the cell
+*texture — The standard deviation of grayscale values**
+*perimeter_mean — Mean of perimeter
+*area_mean — Mean of cell area
+*smoothness — The local variation in spoke lengths
+*concavity — The severity of the concave patterns in the contour
+*symmetry
+*fractal dimension
+
+Used libraries:
+import numpy as np # linear algebra
+import pandas as pd # data processing, CSV file
+import matplotlib.pyplot as plt # Used to plot the plot
+import seaborn as sns # used to plot interactive graph
+%matplotlib inline
+from sklearn.linear_model import LogisticRegression # to use the regression model
+from sklearn.model_selection import train_test_split # to split the data into training and testing
+from sklearn.model_selection import GridSearchCV# setting parameter
+from sklearn.ensemble import RandomForestClassifier # to generate classification model
+from sklearn.naive_bayes import GaussianNB # to generate GaussianNB model
+from sklearn.neighbors import KNeighborsClassifier # to generate KNN model
+from sklearn.tree import DecisionTreeClassifier # to generate decision model
+from sklearn import svm # support vectors
+from sklearn import metrics # check model error and accuracy
+from sklearn.preprocessing import StandardScaler #standardizes the data
+from sklearn.ensemble import ExtraTreesClassifier
+from sklearn.metrics import accuracy_score
+from sklearn.metrics import confusion_matrix#confusion matrix
+from sklearn.svm import SVC # support vectors
+from sklearn.decomposition import PCA
+from dtreeviz.trees import dtreeviz # visualize tree helps us to graph
+from xgboost import XGBClassifier # to generate XGBClassifier model
+from sklearn.metrics import classification_report
+
+Procedure:
+
+* File reading with which we will carry out the learning
+* The file does not contain a header, we proceed with the assignment of the names for each column
+* Read file
+* Information for each column
+* validation if there is NULL in any column
+* duplicate validation
+* diagnostic field reading
+*It can be seen that 62.7% (357 of 569) of people had Benign (non-cancerous) tumors and 37.3% (212 of 569) had Malignant (Cancerous) tumors.
+* transformation of the diagnosis column from String to Int M(malignant)=1 and B(Benign)=1
+* we make a drop (deletion) of the ID column since it is not useful to carry out the study
+* a describe() is performed to identify by column:
+* count
+* mean
+*std
+* minutes
+* 25%
+* fifty%
+* 75%
+*max
+* The dataset is segmented based on the type (mean, se, worst) to be able to work with certain variables
+
+DATA GRAPH:
+* Bar chart that identifies the correlation between diagnoses with each of the columns
+* Bar chart that identifies the correlation between diagnoses with each of the colons that exceed 0.6 of involvement
+* Correlation matrix diagram where it shows the correlation between the different variables and the objective.
+
+USE OF A REDUCED UNIVERSE:
+* A variable is assigned with the fields that you want to work with, in this case the mean columns (mean)
+* We identify the value of the Array
+REDUCED UNIVERSE DATA GRAPH:
+* Graph of count in relation (B or M)
+* Pair chart of all some of the relevant features visualizing the relationship between them
+* Correlation matrix diagram where it shows the correlation between the different variables and the objective.
+* Joint distribution diagram between two variables x="radius_mean",y="texture_mean"
+* Joint distribution diagram between two variables x="radius_mean",y="perimeter_mean"
+* Plot of categorical features, ie B (benign) and M (cancerous) are assigned 0 to 1 respectively.
+
+STATEMENT OF TRAINING VARIABLES:
+* Declaration of variable Target(X), input variables(Y)
+* Declaration of variables for Train and Test
+MODEL TRAINING
+Standardization transforms the data to have a mean of zero and a standard deviation of 1, which improves the performance of the linear model.
+Models like Logistic Regression, Support Vector Machine, K Nearest Neighbors show improved performances of the model, while the model
+Tree-based and ensemble methods do not require feature scaling to be performed, as they are not sensitive to variation in the data.
+
+* Regression model: Regression model accuracy: 92.98245614035088
+* Confusion matrix map based on the regression model
+* Model with vector machine: Precision using support vector machine: 92.10526315789474
+* KNN model: Precision using KNN model: 92.10526315789474
+* Decision tree model: Accuracy using Decision Tree model: 92.98245614035088
+* Decision tree plot with the use of dtreeviz
+* Random Forest model: Random Forest model precision: 94.73684210526315
+* XGBoost Tree Model: XGBoost Classifier Model Accuracy: 97.36842105263158
+
+Analysis of results:
+* using a Data Frame we identify from highest to lowest the best model
+* Classification report
